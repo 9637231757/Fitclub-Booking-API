@@ -22,7 +22,7 @@ class FitnessClassList(APIView):
     def post(self, request):
         serializer = FitnessClassSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save() 
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
@@ -42,7 +42,7 @@ class BookingView(APIView):
         if fitness_class.available_slots <= 0:
             return Response({"error": "No available slots"}, status=400)
 
-        # Booking
+        # booking..
         booking = Booking.objects.create(
             fitness_class=fitness_class,
             client_name=serializer.validated_data["client_name"],
